@@ -152,3 +152,5 @@ connection = create_connection()
 create_database(connection)
 create_table(connection)
 insert_rows(connection, pack_list)
+with open('/tmp/initializer_complete', 'w') as f:
+    f.write('success')
