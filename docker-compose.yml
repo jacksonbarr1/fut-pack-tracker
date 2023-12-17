@@ -17,3 +17,15 @@ services:
       - "5001:5000"
     depends_on:
       - db
+    env_file:
+      - ./db-initializer/.env
+
+  backend:
+    build: ./backend
+    env_file:
+      - ./backend/.env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
