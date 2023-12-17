@@ -60,7 +60,7 @@ def parse_html(html):
 
 
 def create_table(connection):
-    create_table_query = '''CREATE TABLE IF NOT EXISTS packs (
+    create_table_query = '''CREATE TABLE IF NOT EXISTS pack (
             pack_id INTEGER PRIMARY KEY,
             pack_name VARCHAR(64),
             coin_value INT(8),
@@ -76,8 +76,8 @@ def create_table(connection):
             try:
                 cursor.execute("USE futmind_parser")
                 print("Using Database: futmind_parser")
-                cursor.execute("DROP TABLE IF EXISTS packs")
-                print("Dropped existing table: packs")
+                cursor.execute("DROP TABLE IF EXISTS pack")
+                print("Dropped existing table: pack")
                 cursor.execute(create_table_query)
             except Error as e:
                 print(f"Create Table Error: {e}")
@@ -111,7 +111,7 @@ def insert_rows(connection, pack_list):
         try:
             cursor.execute("USE futmind_parser")
             cursor.executemany(
-                """INSERT INTO packs
+                """INSERT INTO pack
                     VALUES 
                     (%s, %s, %s, %s, %s, %s, %s)""", pack_list
             )

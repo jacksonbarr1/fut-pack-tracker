@@ -19,7 +19,7 @@ services:
     depends_on:
       - db
     env_file:
-      - ./db-initializer/.env
+      - backend/.env
     healthcheck:
       test: ["CMD", "test", "-f", "tmp/initializer_complete"]
       interval: 10s
@@ -33,7 +33,7 @@ services:
     env_file:
       - ./backend/.env
     ports:
-      - "8000:8000"
+      - "5000:5000"
     depends_on:
       - db
       - db-initializer
