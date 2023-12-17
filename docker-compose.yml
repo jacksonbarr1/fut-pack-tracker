@@ -8,6 +8,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: 'password'
     restart: always
+
   db-initializer:
     container_name: db-initializer
     links:
@@ -19,6 +20,13 @@ services:
       - db
     env_file:
       - ./db-initializer/.env
+    healthcheck:
+      test: ["CMD", "test", "-f", "tmp/initializer_complete"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - shared-data:/tmp
 
   backend:
     build: ./backend
@@ -28,4 +36,11 @@ services:
       - "8000:8000"
     depends_on:
       - db
+      - db-initializer
+    volumes:
+      - shared-data:/tmp
+
+
+volumes:
+  shared-data:
 
