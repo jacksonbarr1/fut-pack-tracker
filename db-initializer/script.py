@@ -111,7 +111,7 @@ def insert_rows(connection, pack_list):
                     (%s, %s, %s, %s, %s, %s, %s)""", pack_list
             )
             connection.commit()
-            print("Inserted Rows: ", pack_list)
+            print("Inserted Rows")
         except Error as e:
             print(f"Insert Rows Error: {e}")
 
