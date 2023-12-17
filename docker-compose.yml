@@ -12,7 +12,7 @@ services:
     container_name: app
     links:
       - "db"
-    build: ./
+    build: db-initializer
     ports:
       - "5001:5000"
     depends_on:
