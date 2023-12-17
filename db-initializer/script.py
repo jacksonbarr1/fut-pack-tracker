@@ -6,6 +6,11 @@ from bs4 import BeautifulSoup
 import mysql.connector
 from mysql.connector import Error
 
+db_host = os.getenv('DB_HOST')
+db_user = os.getenv('DB_USER')
+db_password = os.getenv('DB_PASSWORD')
+db_port = os.getenv('DB_PORT')
+
 
 def scrape(url):
     page = requests.get(url)
@@ -123,10 +128,10 @@ def create_connection():
     while not connected and attempts < 5:
         try:
             connection = mysql.connector.connect(
-                host="db",
-                port="3306",
-                user="root",
-                password="password"
+                host=db_host,
+                port=db_port,
+                user=db_user,
+                password=db_password
             )
             if connection.is_connected():
                 print("Connected to MySQL")
