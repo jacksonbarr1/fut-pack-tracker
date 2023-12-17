@@ -8,8 +8,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: 'password'
     restart: always
-  app:
-    container_name: app
+  db-initializer:
+    container_name: db-initializer
     links:
       - "db"
     build: db-initializer
